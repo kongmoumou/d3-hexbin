@@ -34,12 +34,15 @@ export default function() {
           pi = Math.round(px = px / dx - (pj & 1) / 2),
           py1 = py - pj;
 
+      // 是否在六边形的折角范围，需要额外判断
       if (Math.abs(py1) * 3 > 1) {
         var px1 = px - pi,
+            // 临近的六边形中心
             pi2 = pi + (px < pi ? -1 : 1) / 2,
             pj2 = pj + (py < pj ? -1 : 1),
             px2 = px - pi2,
             py2 = py - pj2;
+        // 使用欧氏距离判断离哪个六边形的中心近，然后修正
         if (px1 * px1 + py1 * py1 > px2 * px2 + py2 * py2) pi = pi2 + (pj & 1 ? 1 : -1) / 2, pj = pj2;
       }
 
